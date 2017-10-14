@@ -1,0 +1,63 @@
+﻿<?php
+include('../conectadb2.php');
+/** Retorna os dados da unidade fornecedor em caso de sucesso ou FALSE em caso de fracasso **/
+function busca_dados_unit_forn_by_cnpj($cnpj){
+	//$cnpj = "90312133000439";
+	include('../conectadb2.php');
+	$sql = "SELECT * FROM unidade_fornecedor WHERE cnpj = $cnpj";
+	$res = $conectabase->query($sql);
+	$num = mysqli_num_rows($res);
+	$unidade_fornecedor = $res->fetch_array();
+	if ($num == 1) {
+		return $unidade_fornecedor;
+	} else {
+		//echo '<a href="cadastra_unidade_fornecedor" >Cadastre</a> a unidade do fornecedor'
+		return FALSE;
+	}
+}
+//$cnpj = "74261884001146";
+//busca_dados_forn_by_cnpj($cnpj);
+
+/** Retorna os dados do fornecedor em caso de sucesso ou FALSE em caso de fracasso **/
+function busca_dados_forn_by_cnpj($cnpj){
+
+	include('../conectadb2.php');
+	if (busca_dados_unit_forn_by_cnpj($cnpj)==false) {
+
+		return FALSE;
+		// echo 'não há fornecedor cadastrado com esse cnpj'
+
+	} else {
+		$fornecedor_id = busca_dados_unit_forn_by_cnpj($cnpj)['fornecedor_idFornecedor'];
+
+		$sql2 = "SELECT * FROM fornecedor WHERE idFornecedor = $fornecedor_id";
+		$res2 = $conectabase->query($sql2);
+		$num2 = mysqli_num_rows($res2);
+		$fornecedor = $res2->fetch_array();
+		if ($num2 == 1) {
+
+			return $fornecedor;
+
+		} else{
+			return false;
+			//echo "mais de um cadastro de fornecedor ligado neste cnpj. avise o Romulo";
+		}
+	}
+}
+
+function lista_forn(){
+
+
+	require('../conectadb2.php');
+	$sqlforn= " SELECT * FROM `fornecedor` ORDER BY `fantasia`";
+	$query = $conectabase->query($sqlforn);
+	$total = mysqli_num_rows($query);
+
+	while ($linha = $query->fetch_array()) {
+		echo "<option value=\"".$linha['idFornecedor']."\">".$linha['fantasia']."</option>";
+
+	}
+}
+
+?>
+

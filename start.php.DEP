@@ -1,0 +1,178 @@
+﻿<?php
+
+// A sessão precisa ser iniciada em cada página diferente
+/**
+if (!isset($_SESSION['usuarioERP'])) {
+	session_start();
+}
+
+
+// Verifica se não há a variável da sessão que identifica o usuário
+if (!isset($_SESSION['UsuarioERP'])) {
+	// Destrói a sessão por segurança
+	session_destroy();
+	// Redireciona o visitante de volta pro login
+	//header("Location: index.php"); exit;
+}
+if ($_SESSION['logado']!=1) {
+	// Destrói a sessão por segurança
+	session_destroy();
+	// Redireciona o visitante de volta pro login
+	header("Location: index.html"); exit;
+}
+
+require('conectadb.php');
+ *
+ * **/
+?>
+
+<?php include("includes/header.php") ?>
+
+
+
+		<body>
+	<div class="container">
+
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">ERP Sapatino</span>
+			</button>
+			<a class="navbar-brand" href="#">Sapatino</a>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="Insere_chave.php">Caixa</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Caixa <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Fechamento do dia</a></li>
+						<li><a href="#">Inserir pagamentos</a></li>
+						<li><a href="#">Relatório</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+						<li class="divider"></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Caixa</a></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Financeiro <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Inserir NFe</a></li>
+						<li><a href="#">Inserir pagamentos</a></li>
+						<li><a href="#">Relatório</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+						<li class="divider"></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group"><input class="form-control" type="text" placeholder="Search" /></div>
+				<button class="btn btn-default" type="submit">Submit</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Link</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!--
+	<div id="container">
+
+		<div id="header" title="Operações ERP" >
+			<div id="skipmenu">Operações ERP</div>
+		</div>
+
+		<div id="mainnav">
+			<ul>
+				<li><a href="decisao.php">HOME</a></li>
+				<li><font color="#C0C0C0">Alterar Paciente</font></li>
+				<li><font color="#C0C0C0">Relatório do Paciente</font></li>
+				<li><a href="Exportar.php">Exportar Banco</a></li>
+				<li><a href="Exportar_tcc.php">TCC</a></li>
+				<li><a href="logoff.php">Logoff</a></li>
+			</ul>
+		</div>
+
+		<div id="menu">
+			<h3>Buscar</h3>
+				<form action="decisao.php?tipoform=91" method="post">
+				<ul>
+					<li><input name="pesquisar" type="text" id="pesquisar" size="10"/> <input type="submit" value="OK" /></li>
+					<li></li>
+					<li>*Busque o Paciente por seu ID ou Nome</li>
+				</form>
+				</ul>
+				<ul>
+					<li><a href="decisao.php?tipoform=92">Novo Paciente</a></li>
+				</ul>
+		</div>
+
+		<div id="contents">
+		-->
+
+			<?php
+			/**
+
+if ($tipoform==91) {
+	$pesquisar = $_POST['pesquisar'];
+	$codesql = "SELECT * FROM `pacientes` WHERE nome LIKE '%".$pesquisar."%' OR id LIKE '%".$pesquisar."%' ORDER BY id";
+	$consulta = mysql_query($codesql);
+
+	$total = mysql_num_rows($consulta);
+	include("buscador.php");
+
+} elseif ($tipoform==92) {
+
+	include("novo_paciente.php");
+
+} else{
+	include("last.php");
+}
+**/
+
+?>
+
+<!--		</div>
+
+		<div id="footer">
+			<ul>
+			<li><a href="?sair" onclick="return confirm('Deseja realmente sair do sistema?')">Sair</a></li>
+			</ul>
+		</div>
+
+	</div>
+	-->
+	</body>
+</html>
